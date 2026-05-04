@@ -40,6 +40,9 @@ def main():
     vida_jogador = 40
     mana_jogador = 20
     while True:
+        print('-' * 30)
+        print('Seu turno!')
+        print('-' * 30)
         while True:
             print(f'O que você deseja fazer? Você possuí {vida_jogador} de vida e {mana_jogador} de mana.\nSeu oponente possuí {vida_CPU} de vida.')
             escolha1 = input('1- Atacar\n2- Defender\n3- Conjurar uma magia\n')
@@ -133,7 +136,9 @@ def main():
             print(f'Você venceu! Parabéns, {nome_jogador}!')
             break
 #Turno da CPU
+        print('-' * 30)
         print('Vez da CPU!')
+        print('-' * 30)
         if escolha_CPU <= 8:
             acertou_CPU = random.randint(acertomin, acertomax)
             defesa_CPU = False
