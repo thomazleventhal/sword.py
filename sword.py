@@ -2,7 +2,9 @@ import random
 import math
 import time
 
-def main():  
+def main():
+#Declaro a CPU_envenenado pro código não quebrar depois
+    CPU_envenenado = False
     nome_jogador = input('Olá, como você se chama? ')
     print(f'Que nome legal, {nome_jogador}!')
     print(f'Vamos ver contra quem você ira lutar!')
@@ -95,6 +97,8 @@ def main():
                     critico_jogador = random.randint(1,20)
                     if critico_jogador == 20:
                         dano_jogador *= 2
+                    if defesa_CPU:
+                        dano_jogador //= 2
                     vida_CPU -= dano_jogador
                     if critico_jogador == 20:
                         print(f'Você conjura uma bola de fogo e atira em seu inimigo. ACERTO CRÍTICO! Você causou {dano_jogador} de dano, deixando seu oponente com {vida_CPU} de vida.')
@@ -110,6 +114,8 @@ def main():
                     critico_jogador = random.randint(1,20)
                     if critico_jogador == 20:
                         dano_jogador *= 2
+                    if defesa_CPU:
+                        dano_jogador //= 2
                     vida_CPU -= dano_jogador
                     if critico_jogador == 20:
                         print(f'Você conjura raios que caem dos céus e atingem seu oponente. ACERTO CRÍTICO! Você causou {dano_jogador} de dano, deixando seu oponente com {vida_CPU} de vida.')
@@ -120,6 +126,8 @@ def main():
                         critico_jogador = random.randint(1,20)
                         if critico_jogador == 20:
                             dano_jogador *= 2
+                        if defesa_CPU:
+                            dano_jogador //= 2
                         vida_CPU -= dano_jogador
                         if critico_jogador == 20:
                             print(f'Os raios atingem seu oponente mais uma vez. ACERTO CRÍTICO! Você causou {dano_jogador} de dano, deixando seu oponente com {vida_CPU} de vida.')
@@ -146,10 +154,14 @@ def main():
         print('-' * 50)
         print('Vez da CPU!')
         print('-' * 50)
+
         if CPU_envenenado:
             print(f'O {escolha_inimigo} sofre {dano_veneno} de dano devido ao veneno!')
             vida_CPU -= dano_veneno
             turno_veneno += 1
+        if vida_CPU <= 0:
+            print(f'Você venceu! Parabéns, {nome_jogador}!')
+            break
         if CPU_envenenado and turno_veneno >= 3:
             print(f'O efeito do veneno se dispersa e seu oponente recupera seu estado de saúde')
             CPU_envenenado = False
@@ -173,7 +185,7 @@ def main():
         elif escolha_CPU > 8:
             print('Ele defende!')
 
-#Chegagem de mortes:
+#Checagem de mortes:
         if vida_jogador <= 0:
             print(f'Que pena, você perdeu.')
             break
